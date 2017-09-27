@@ -5,15 +5,18 @@ from Core.System import System
 
 class SystemTest(unittest.TestCase):
 
-    @classmethod
-    def setUp(cls):
-        cls.system = System()
+    def setUp(self):
+        self.system = System()
 
     def tearDown(self):
         pass
 
-    def test_StateIsStartAtInit(self):
-        self.assertTrue(self.system.get_current_state(), System.STATE_START)
+    def test_SetState(self):
+        self.system.set_state(System.STATE_STOPPED)
+        self.assertTrue(self.system.get_state(), System.STATE_STOPPED)
+
+    def test_PoseIsZeroAtInit(self):
+        self.assertTrue(self.system.pose.get_pose(), (0.0, 0.0, 0.0))
 
 
 if __name__ == '__main__':
