@@ -1,7 +1,8 @@
-
+from Core.System import System
 
 def main():
-    pass
+    system = System()
+    system.start()
 
 if __name__ == '__main__':
     main()
