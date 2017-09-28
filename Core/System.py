@@ -1,8 +1,8 @@
-
 try:
     import RPi.GPIO as GPIO
 except (RuntimeError, ImportError):
     pass
+
 
 class System:
 
@@ -52,18 +52,6 @@ class System:
         self.move_state = state
 
     def run(self):
-        # set pose to zero
-        if self.get_state() == self.STATE_INIT:
-            self.pose.reset_pose()
-            self.target_acquired = False
-            self.set_state(self.STATE_SEARCH)
-
-        if self.get_state() == self.STATE_SEARCH:
-            self.get_scene()
-        # is target in view
-        # find target
-        # set new pose
-        # move to target
 
 
         pass

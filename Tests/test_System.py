@@ -1,5 +1,4 @@
 import unittest
-
 from Core.System import System
 
 
