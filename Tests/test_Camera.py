@@ -1,5 +1,6 @@
 import unittest
-from Core.Camera import Camera
+
+from Core.Vision.Camera import Camera
 
 
 class CameraTest(unittest.TestCase):

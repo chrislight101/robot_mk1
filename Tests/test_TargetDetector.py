@@ -1,6 +1,8 @@
 import unittest
-from Core.TargetDetector import TargetDetector
+
 import numpy as np
+
+from Core.Vision.TargetDetector import TargetDetector
 
 
 class TargetDetectorTest(unittest.TestCase):
