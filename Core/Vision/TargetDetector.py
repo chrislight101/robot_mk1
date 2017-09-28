@@ -1,21 +1,33 @@
-from Core.Camera import Camera
 import cv2
 import numpy as np
 
+from Core.Vision.Camera import Camera
+
 
 class TargetDetector:
+    # A class to locate environment features with vision sensor
 
-    DEFAULT_LOWER_HSV_BOUNDS =  [0, 0, 0]
+    DEFAULT_LOWER_HSV_BOUNDS = [0, 0, 0]
     DEFAULT_UPPER_HSV_BOUNDS = [179, 255, 255]
 
-    GREEN_LOWER_HSV_BOUNDS =  [45, 0, 0]
+    GREEN_LOWER_HSV_BOUNDS = [45, 0, 0]
     GREEN_UPPER_HSV_BOUNDS = [65, 255, 255]
 
     def __init__(self):
         self.camera = Camera()
         self.hsv_low_bounds = np.array(self.DEFAULT_LOWER_HSV_BOUNDS)
         self.hsv_high_bounds = np.array(self.DEFAULT_UPPER_HSV_BOUNDS)
+        self.target_found = False
         pass
+
+    def scan_for_potential_targets(self):
+        self.target_found = False
+        while not self.target_found:
+            self.capture_and_color_filter()
+            avg_green_in_frame = self.get_avg_green()
+
+
+        return self.target_found
 
     def set_bounds(self, lower_bounds, upper_bounds):
         self.hsv_low_bounds = np.array(lower_bounds)
