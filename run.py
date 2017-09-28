@@ -5,7 +5,7 @@ from Core.System import System
 def main():
     try:
         system = System()
-        system.start()
+        system.run()
 
     except:
         ex_type, ex_value, traceback = sys.exc_info()

@@ -12,10 +12,11 @@ class SystemTest(unittest.TestCase):
         pass
 
     def test_SetState(self):
-        self.system.set_state(System.STATE_STOPPED)
-        self.assertTrue(self.system.get_state(), System.STATE_STOPPED)
+        self.system.set_move_state(System.STATE_STOPPED)
+        self.assertTrue(self.system.get_move_state(), System.STATE_STOPPED)
 
-    def test_PoseIsZeroAtInit(self):
+    def test_ResetPoseToZero(self):
+        self.system.pose.reset_pose()
         self.assertTrue(self.system.pose.get_pose(), (0.0, 0.0, 0.0))
 
 
