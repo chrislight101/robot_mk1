@@ -1,5 +1,4 @@
 import unittest
-
 from Core.Vision.Camera import Camera
 
 

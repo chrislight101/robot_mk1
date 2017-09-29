@@ -25,5 +25,6 @@ class TargetDetectorTest(unittest.TestCase):
         self.target_detector.get_avg_green()
         pass
 
+
 if __name__ == '__main__':
     unittest.main()
