@@ -1,6 +1,5 @@
 import cv2
 import numpy as np
-
 from Core.Vision.Camera import Camera
 
 
@@ -27,8 +26,7 @@ class TargetDetector:
             avg_green_in_frame = self.get_avg_green()
             if avg_green_in_frame > 25:
                 self.target_found = True
-                return  self.target_found
-
+                return self.target_found
 
         return self.target_found
 
@@ -55,11 +53,12 @@ class TargetDetector:
 
     def display(self):
         self.set_bounds(self.GREEN_LOWER_HSV_BOUNDS, self.GREEN_UPPER_HSV_BOUNDS)
-        while (True):
+        while True:
             img = self.capture_and_color_filter()
             cv2.imshow('img', img)
             if cv2.waitKey(1) & 0xFF == ord('q'):
                 break
+
 
 if __name__ == '__main__':
     target_detector = TargetDetector()
