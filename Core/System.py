@@ -4,6 +4,7 @@ except (RuntimeError, ImportError):
     pass
 
 from Core.Vision.TargetDetector import TargetDetector
+from Core.Vision.Camera import Camera
 import yaml
 import os
 
@@ -43,6 +44,7 @@ class System:
 
     def __init__(self):
         self.pose = self.Pose()
+        self.camera = Camera()
         self.move_state = self.STATE_STOPPED
         self.state = self.STATE_INIT
         self.target_found = None
@@ -50,7 +52,7 @@ class System:
         fpt = open(self.CONFIG_FILE, 'r')
         self.config = yaml.load(fpt)
         fpt.close()
-        self.target_detector = TargetDetector()
+        self.target_detector = TargetDetector(self.camera)
 
     def run(self):
         self.pose.reset_pose()

@@ -12,8 +12,8 @@ class TargetDetector:
     GREEN_LOWER_HSV_BOUNDS = np.array([35, 50, 50])
     GREEN_UPPER_HSV_BOUNDS = np.array([75, 255, 255])
 
-    def __init__(self):
-        self.camera = Camera()
+    def __init__(self, camera=Camera()):
+        self.camera = camera
         self.hsv_low_bounds = self.DEFAULT_LOWER_HSV_BOUNDS
         self.hsv_high_bounds = self.DEFAULT_UPPER_HSV_BOUNDS
         self.target_found = False

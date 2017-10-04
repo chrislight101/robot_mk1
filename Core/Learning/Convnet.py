@@ -1,7 +1,7 @@
 from keras.preprocessing.image import ImageDataGenerator
 from keras.models import Sequential
 from keras.layers import Conv2D, MaxPooling2D
-from keras.layers import Activation, Dropout, Flatten, Dense, Lambda
+from keras.layers import Activation, Dropout, Flatten, Dense
 from keras import backend as K
 
 
@@ -18,9 +18,8 @@ class Convnet:
     nb_train_samples = 3000
     nb_validation_samples = 600
 
-
     def __init__(self):
-        self.model = None
+        pass
 
     def build_model(self):
         if K.image_data_format() == 'channels_first':
@@ -69,11 +68,3 @@ if __name__ == 'main':
                         validation_steps=convnet.nb_validation_samples // convnet.BATCH_SIZE)
     model.save('model.h5')
     model.save_weights('weights.h5')
-
-
-
-
-
-
-
-

@@ -1,6 +1,7 @@
 from cv2 import VideoCapture
 
 
+
 class Camera:
 
     DEFAULT_CAPTURE = 0
@@ -10,7 +11,11 @@ class Camera:
         self.cap = VideoCapture(self.DEFAULT_CAPTURE)
 
     def open_capture(self):
-        return self.cap.open(0)
+        self.cap.open(0)
+
+    def close_capture(self):
+        self.cap.release()
+        cv2.destroyAllWindows()
 
     def is_cap_opened(self):
         return self.cap.isOpened()
