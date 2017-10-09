@@ -19,7 +19,7 @@ class Convnet:
     nb_validation_samples = 600
 
     def __init__(self):
-        pass
+        self.model = self.build_model()
 
     def build_model(self):
         if K.image_data_format() == 'channels_first':
@@ -45,26 +45,29 @@ class Convnet:
         model.add(Dense(3))
         model.add(Activation('softmax'))
 
+        model.compile(loss='categorical_crossentropy', optimizer='rmsprop', metrics=['accuracy'])
+
         return model
+
+    def train_and_test(self, model):
+        train_datagen = ImageDataGenerator(rescale=1. / 255, shear_range=0.2, zoom_range=0.2, horizontal_flip=True)
+        test_datagen = ImageDataGenerator(rescale=1. / 255)
+        train_generator = train_datagen.flow_from_directory(convnet.train_data_dir,
+                                                            target_size=(convnet.IMG_WIDTH, convnet.IMG_HEIGHT),
+                                                            batch_size=convnet.BATCH_SIZE, class_mode='categorical')
+        validation_generator = test_datagen.flow_from_directory(convnet.validation_data_dir,
+                                                                target_size=(convnet.IMG_WIDTH, convnet.IMG_HEIGHT),
+                                                                batch_size=convnet.BATCH_SIZE, class_mode='categorical')
+        print(validation_generator.class_indices)
+
+        model.fit_generator(train_generator, steps_per_epoch=convnet.nb_train_samples // convnet.BATCH_SIZE,
+                            epochs=convnet.EPOCHS, validation_data=validation_generator,
+                            validation_steps=convnet.nb_validation_samples // convnet.BATCH_SIZE)
 
 
 if __name__ == 'main':
     convnet = Convnet()
     model = convnet.build_model()
-    model.compile(loss='categorical_crossentropy', optimizer='rmsprop', metrics=['accuracy'])
-
-    train_datagen = ImageDataGenerator(rescale=1. / 255, shear_range=0.2, zoom_range=0.2, horizontal_flip=True)
-    test_datagen = ImageDataGenerator(rescale=1. / 255)
-    train_generator = train_datagen.flow_from_directory(convnet.train_data_dir,
-                                                        target_size=(convnet.IMG_WIDTH, convnet.IMG_HEIGHT),
-                                                        batch_size=convnet.BATCH_SIZE, class_mode='categorical')
-    validation_generator = test_datagen.flow_from_directory(convnet.validation_data_dir,
-                                                            target_size=(convnet.IMG_WIDTH, convnet.IMG_HEIGHT),
-                                                            batch_size=convnet.BATCH_SIZE, class_mode='categorical')
-    print(validation_generator.class_indices)
-
-    model.fit_generator(train_generator, steps_per_epoch=convnet.nb_train_samples // convnet.BATCH_SIZE,
-                        epochs=convnet.EPOCHS, validation_data=validation_generator,
-                        validation_steps=convnet.nb_validation_samples // convnet.BATCH_SIZE)
+    convnet.train_and_test(model)
     model.save('model.h5')
     model.save_weights('weights.h5')

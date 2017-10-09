@@ -10,6 +10,10 @@ class ConvnetTest(unittest.TestCase):
     def tearDown(self):
         pass
 
+    def test_ConvnetDetectsGreenTarget(self):
+        # load image
+        pass
+
 
 if __name__ == '__main__':
     unittest.main()
