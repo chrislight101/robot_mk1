@@ -3,8 +3,9 @@ try:
 except (RuntimeError, ImportError):
     import Components.MockGPIO as GPIO
 
-class LM298:
+class L298N:
     # A class to define the LM298 motor controller module
+    #TODO: Can this be changed to not depend on RPi hardware
 
     MOTOR_A_ENABLE_PIN = 11
     MOTOR_B_ENABLE_PIN = 12
