@@ -1,9 +1,8 @@
-import numpy as np
-import cv2
 import os
 import shutil
-import time
-from Core.Vision.Camera import Camera
+
+import cv2
+import numpy as np
 
 
 class ImageRecorder:

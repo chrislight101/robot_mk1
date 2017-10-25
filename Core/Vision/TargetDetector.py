@@ -1,6 +1,7 @@
 import cv2
 import numpy as np
-from Core.Vision.Camera import Camera
+
+from Components.Camera import Camera
 
 
 class TargetDetector:

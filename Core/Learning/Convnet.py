@@ -49,7 +49,7 @@ class Convnet:
 
         return model
 
-    def train_and_test(self, model):
+    def train_and_test(model):
         train_datagen = ImageDataGenerator(rescale=1. / 255, shear_range=0.2, zoom_range=0.2, horizontal_flip=True)
         test_datagen = ImageDataGenerator(rescale=1. / 255)
         train_generator = train_datagen.flow_from_directory(convnet.train_data_dir,

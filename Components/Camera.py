@@ -1,4 +1,5 @@
 from cv2 import VideoCapture
+from cv2 import destroyAllWindows
 
 
 
@@ -8,14 +9,15 @@ class Camera:
     SECONDARY_CAPTURE = 1
 
     def __init__(self):
-        self.cap = VideoCapture(self.DEFAULT_CAPTURE)
+        #self.cap = VideoCapture(self.DEFAULT_CAPTURE)
+        self.cap = VideoCapture()
 
     def open_capture(self):
         self.cap.open(0)
 
     def close_capture(self):
         self.cap.release()
-        cv2.destroyAllWindows()
+        destroyAllWindows()
 
     def is_cap_opened(self):
         return self.cap.isOpened()

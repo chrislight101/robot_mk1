@@ -3,10 +3,12 @@ try:
 except (RuntimeError, ImportError):
     pass
 
-from Core.Vision.TargetDetector import TargetDetector
-from Core.Vision.Camera import Camera
-import yaml
 import os
+
+import yaml
+
+from Components.Camera import Camera
+from Core.Vision.TargetDetector import TargetDetector
 
 
 class System:

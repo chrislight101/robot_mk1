@@ -1,5 +1,6 @@
 import sys
-from Core.System import System
+
+from System.System import System
 
 
 def main():
