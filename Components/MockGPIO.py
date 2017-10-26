@@ -34,3 +34,6 @@ class PWM:
 
     def ChangeFrequency(self, new_frequency):
         self.frequency = new_frequency
+
+    def ChangeDutyCycle(self, new_duty_cycle):
+        self.duty_cycle = new_duty_cycle

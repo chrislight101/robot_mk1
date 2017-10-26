@@ -37,10 +37,10 @@ class L298N:
 
 
     def set_motor_A_pwm(self, pwm):
-        self.motor_a_pwm.ChangeFrequency(pwm)
+        self.motor_a_pwm.ChangeDutyCycle(pwm)
 
     def set_motor_B_pwm(self, pwm):
-        self.motor_b_pwm.ChangeFrequency(pwm)
+        self.motor_b_pwm.ChangeDutyCycle(pwm)
 
     def set_motor_A_dir(self, dir):
         if dir == self.FORWARD:
