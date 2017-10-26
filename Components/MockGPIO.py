@@ -11,6 +11,9 @@ def cleanup():
 def setmode(mode):
     mode = mode
 
+def setwarnings(warnings):
+    warnings = warnings
+
 def setup(pin_num, pin_mode):
     pin_num = pin_num
     pin_mode = pin_mode

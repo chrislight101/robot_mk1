@@ -7,4 +7,4 @@ class System:
         self.robot = GBot()
 
     def run(self):
-        self.robot.drive_in_circle()
+        self.robot.listen_for_commands()

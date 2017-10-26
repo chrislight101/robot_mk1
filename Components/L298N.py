@@ -21,6 +21,7 @@ class L298N:
 
     def __init__(self):
         GPIO.setmode(GPIO.BOARD)
+        GPIO.setwarnings(False)
         # motor 1 pins
         GPIO.setup(self.MOTOR_A_ENABLE_PIN, GPIO.OUT)  # A PWM
         GPIO.setup(self.MOTOR_A_DIR_PINS[0], GPIO.OUT)
@@ -44,13 +45,13 @@ class L298N:
 
     def set_motor_A_dir(self, dir):
         if dir == self.FORWARD:
-            GPIO.output(self.MOTOR_A_DIR_PINS[0], 0)
-            GPIO.output(self.MOTOR_A_DIR_PINS[1], 1)
+            GPIO.output(self.MOTOR_A_DIR_PINS[1], 0)
+            GPIO.output(self.MOTOR_A_DIR_PINS[0], 1)
         elif dir == self.REVERSE:
             GPIO.output(self.MOTOR_A_DIR_PINS[0], 1)
             GPIO.output(self.MOTOR_A_DIR_PINS[1], 0)
         elif dir == self.BRAKE:
-            GPIO.output(self.MOTOR_A_DIR_PINS[0], 1)
+            GPIO.output(self.MOTOR_A_DIR_PINS[1], 1)
             GPIO.output(self.MOTOR_A_DIR_PINS[1], 1)
 
     def set_motor_B_dir(self, dir):
@@ -58,8 +59,8 @@ class L298N:
             GPIO.output(self.MOTOR_B_DIR_PINS[0], 0)
             GPIO.output(self.MOTOR_B_DIR_PINS[1], 1)
         elif dir == self.REVERSE:
-            GPIO.output(self.MOTOR_B_DIR_PINS[0], 1)
-            GPIO.output(self.MOTOR_B_DIR_PINS[1], 0)
+            GPIO.output(self.MOTOR_B_DIR_PINS[1], 1)
+            GPIO.output(self.MOTOR_B_DIR_PINS[0], 0)
         elif dir == self.BRAKE:
-            GPIO.output(self.MOTOR_B_DIR_PINS[0], 1)
+            GPIO.output(self.MOTOR_B_DIR_PINS[1], 1)
             GPIO.output(self.MOTOR_B_DIR_PINS[1], 1)
