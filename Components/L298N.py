@@ -3,9 +3,10 @@ try:
 except (RuntimeError, ImportError):
     import Components.MockGPIO as GPIO
 
+
 class L298N:
-    # A class to define the LM298 motor controller module
-    #TODO: Can this be changed to not depend on RPi hardware
+    # A class to define the L298n motor controller module
+    # TODO: Can this be changed to not depend on RPi hardware
 
     MOTOR_A_ENABLE_PIN = 11
     MOTOR_B_ENABLE_PIN = 12
@@ -36,31 +37,30 @@ class L298N:
         self.motor_a_pwm.start(0)
         self.motor_b_pwm.start(0)
 
-
-    def set_motor_A_pwm(self, pwm):
+    def set_motor_a_pwm(self, pwm):
         self.motor_a_pwm.ChangeDutyCycle(pwm)
 
-    def set_motor_B_pwm(self, pwm):
+    def set_motor_b_pwm(self, pwm):
         self.motor_b_pwm.ChangeDutyCycle(pwm)
 
-    def set_motor_A_dir(self, dir):
-        if dir == self.FORWARD:
+    def set_motor_a_dir(self, direction):
+        if direction == self.FORWARD:
             GPIO.output(self.MOTOR_A_DIR_PINS[1], 0)
             GPIO.output(self.MOTOR_A_DIR_PINS[0], 1)
-        elif dir == self.REVERSE:
-            GPIO.output(self.MOTOR_A_DIR_PINS[0], 1)
-            GPIO.output(self.MOTOR_A_DIR_PINS[1], 0)
-        elif dir == self.BRAKE:
+        elif direction == self.REVERSE:
+            GPIO.output(self.MOTOR_A_DIR_PINS[0], 0)
+            GPIO.output(self.MOTOR_A_DIR_PINS[1], 1)
+        elif direction == self.BRAKE:
             GPIO.output(self.MOTOR_A_DIR_PINS[1], 1)
             GPIO.output(self.MOTOR_A_DIR_PINS[1], 1)
 
-    def set_motor_B_dir(self, dir):
-        if dir == self.FORWARD:
+    def set_motor_b_dir(self, direction):
+        if direction == self.FORWARD:
             GPIO.output(self.MOTOR_B_DIR_PINS[0], 0)
             GPIO.output(self.MOTOR_B_DIR_PINS[1], 1)
-        elif dir == self.REVERSE:
-            GPIO.output(self.MOTOR_B_DIR_PINS[1], 1)
-            GPIO.output(self.MOTOR_B_DIR_PINS[0], 0)
-        elif dir == self.BRAKE:
+        elif direction == self.REVERSE:
+            GPIO.output(self.MOTOR_B_DIR_PINS[1], 0)
+            GPIO.output(self.MOTOR_B_DIR_PINS[0], 1)
+        elif direction == self.BRAKE:
             GPIO.output(self.MOTOR_B_DIR_PINS[1], 1)
             GPIO.output(self.MOTOR_B_DIR_PINS[1], 1)

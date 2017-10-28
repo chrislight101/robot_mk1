@@ -2,14 +2,13 @@ from cv2 import VideoCapture
 from cv2 import destroyAllWindows
 
 
-
 class Camera:
 
     DEFAULT_CAPTURE = 0
     SECONDARY_CAPTURE = 1
 
     def __init__(self):
-        #self.cap = VideoCapture(self.DEFAULT_CAPTURE)
+        self.cap = VideoCapture(self.DEFAULT_CAPTURE)
         self.cap = VideoCapture()
 
     def open_capture(self):
