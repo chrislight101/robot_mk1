@@ -1,4 +1,3 @@
-from Components.Camera import Camera
 from Components.L298N import L298N
 from time import sleep
 import curses
@@ -11,7 +10,7 @@ class GBot:
 
     def __init__(self):
         self.stdscr = curses.initscr()
-        self.camera = Camera()
+
         self.motor_drive = L298N()
 
     def drive_in_circle_x_seconds(self, seconds):
@@ -51,7 +50,6 @@ class GBot:
         self.motor_drive.set_motor_b_pwm(0)
 
     def curses_init(self):
-        # curses init for terminal keyboard steering
         curses.noecho()
         curses.cbreak()
         self.stdscr.keypad(True)
@@ -63,25 +61,39 @@ class GBot:
         curses.echo()
         curses.endwin()
 
-    def listen_for_commands(self):
+    def parse_command(self,cmd):
+        # movement
+        if cmd == ord('w'):
+            self.drive_forward(self.DEFAULT_PWM)
+        elif cmd == ord('a'):
+            self.turn_left()
+        elif cmd == ord('d'):
+            self.turn_right()
+        elif cmd == ord('s'):
+            self.drive_reverse(self.DEFAULT_PWM)
+        elif cmd == ord('r'):
+            # start recording images
+            pass
+        elif cmd == ord('e'):
+            # stop recording images
+            pass
+        elif cmd == ord('q'):
+            # shutdown
+            return False
+        else:
+            self.stop()
+        sleep(0.05)
+        return True
+
+    def main_loop(self):
         self.curses_init()
-        while True:
+        c = self.stdscr.getch()
+        while self.parse_command(c):
             c = self.stdscr.getch()
-            if c == ord('w'):
-                self.drive_forward(self.DEFAULT_PWM)
-            elif c == ord('a'):
-                self.turn_left()
-            elif c == ord('d'):
-                self.turn_right()
-            elif c == ord('s'):
-                self.drive_reverse(self.DEFAULT_PWM)
-            elif c == ord('q'):
-                break
-            else:
-                self.stop()
-            sleep(0.05)
+
+
         self.curses_cleanup()
 
 if __name__ == '__main__':
     gbot = GBot()
-    GBot.listen_for_commands()
+    GBot.main_loop()

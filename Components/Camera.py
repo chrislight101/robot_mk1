@@ -1,5 +1,4 @@
-from cv2 import VideoCapture
-from cv2 import destroyAllWindows
+from cv2 import VideoCapture, destroyAllWindows, imshow, waitKey
 
 
 class Camera:
@@ -9,9 +8,6 @@ class Camera:
 
     def __init__(self):
         self.cap = VideoCapture(self.DEFAULT_CAPTURE)
-        self.cap = VideoCapture()
-
-    def open_capture(self):
         self.cap.open(0)
 
     def close_capture(self):
@@ -24,3 +20,14 @@ class Camera:
     def get_frame(self):
         ret, frame = self.cap.read()
         return frame
+
+
+if __name__ == '__main__':
+    camera = Camera()
+    while True:
+        img = camera.get_frame()
+        imshow('img', img)
+        key = waitKey(1) & 0xFF
+        if key == ord('q'):
+            break
+    camera.close_capture()

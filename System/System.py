@@ -5,10 +5,10 @@ class System:
     # A top level abstraction for the project
 
     def __init__(self):
-        self.robot = GBot()
+        self.gbot = GBot()
 
     def run(self):
-        self.robot.listen_for_commands()
+        self.gbot.main_loop()
 
 
 if __name__ == '__main__':
