@@ -19,8 +19,6 @@ class TargetDetector:
         self.hsv_high_bounds = self.DEFAULT_UPPER_HSV_BOUNDS
         self.target_found = False
 
-        self.camera.open_capture()
-
     def scan_for_potential_targets(self):
         self.target_found = False
         while not self.target_found:

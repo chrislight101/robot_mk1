@@ -5,24 +5,31 @@ BCM = 'broadcom'
 OUT = 'output'
 IN = 'input'
 
+
 def cleanup():
     pass
+
 
 def setmode(mode):
     mode = mode
 
+
 def setwarnings(warnings):
     warnings = warnings
+
 
 def setup(pin_num, pin_mode):
     pin_num = pin_num
     pin_mode = pin_mode
 
+
 def output(pin_num, direction):
     pass
 
+
 def input(pin_num):
     return True
+
 
 class PWM:
     def __init__(self,pin, frequency):

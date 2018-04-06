@@ -8,7 +8,9 @@ class Camera:
 
     def __init__(self):
         self.cap = VideoCapture(self.DEFAULT_CAPTURE)
-        self.cap.open(0)
+        self.cap.open(1)
+        self.center_x = int(self.cap.get(3) / 2)
+        self.center_y = int(self.cap.get(4) / 2)
 
     def close_capture(self):
         self.cap.release()
